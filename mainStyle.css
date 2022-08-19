@@ -1,0 +1,33 @@
+body {
+  cursor: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+#realCursor {
+  --cursorSize: 30px;
+  position: fixed;
+  width: var(--cursorSize);
+  height: var(--cursorSize);
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 50%, 0.5);
+  left: calc(var(--cursorSize)*(-0.5));
+  top: calc(var(--cursorSize)*(-0.5));
+}
+
+#niseCursor {
+  --cursorSize: 20px;
+  position: fixed;
+  width: var(--cursorSize);
+  height: var(--cursorSize);
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 50%, 0.5);
+  left: calc(var(--cursorSize)*(-0.5));
+  top: calc(var(--cursorSize)*(-0.5));
+
+  /* テスト用 */
+  background-color: hsla(0, 100%, 50%, 1.0);
+  filter: drop-shadow(3px 3px 5px hsla(0, 0%, 10%, 1.0));
+}
