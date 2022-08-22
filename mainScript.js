@@ -98,13 +98,13 @@ window.addEventListener("load",  () => {
 let functions = [];
 
 functions[0] = () => {
-  alert('functions 0');
+  console.log('functions 0');
 };
 
 functions[1] = () => {
-  alert('function1 1');
+  console.log('function1 1');
 };
 
 functions[2] = () => {
-  alert('function 2');
+  console.log('function 2');
 };
