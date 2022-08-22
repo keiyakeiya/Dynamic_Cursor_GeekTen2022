@@ -46,9 +46,11 @@ let render = () => {
 
   // 境界との接触をチェック
   // アクション入れるならここ
+
   if (niseX<0) {
     niseX = 0;
     niseVX *= -1;
+    functions[0](); // これ
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
@@ -91,3 +93,18 @@ window.addEventListener("load",  () => {
   // レンダリング開始
   render();
 },false);
+
+
+let functions = [];
+
+functions[0] = () => {
+  alert('functions 0');
+};
+
+functions[1] = () => {
+  alert('function1 1');
+};
+
+functions[2] = () => {
+  alert('function 2');
+};
