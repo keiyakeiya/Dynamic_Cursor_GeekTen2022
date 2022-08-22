@@ -28,6 +28,6 @@ a {
   top: calc(var(--cursorSize)*(-0.5));
 
   /* テスト用 */
-  background-color: hsla(0, 100%, 50%, 1.0);
+  background-color: hsla(200, 100%, 50%, 1.0);
   filter: drop-shadow(3px 3px 5px hsla(0, 0%, 10%, 1.0));
 }
