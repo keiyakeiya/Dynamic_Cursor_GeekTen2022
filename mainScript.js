@@ -54,6 +54,7 @@ let render = () => {
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
+    functions[1]();
   }
   if (niseY<0) {
     niseY = 0;
@@ -98,11 +99,11 @@ window.addEventListener("load",  () => {
 let functions = [];
 
 functions[0] = () => {
-  console.log('????');
+  history.back();
 };
 
 functions[1] = () => {
-  console.log('function1 1');
+  history.forward();
 };
 
 functions[2] = () => {
