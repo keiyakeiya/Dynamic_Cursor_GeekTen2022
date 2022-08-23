@@ -31,8 +31,10 @@ DynamicCursor
   - [x] 抵抗値
   - [x] 感度 &rarr; ニセカーソルの質量として実装
 - [ ] クリック
+- [ ] 設定画面
 - [ ] ニセカーソルがリンクにホバーした時の動作
 - [ ] アクション
+<<<<<<< HEAD
 - [ ] 設定画面
 
 ### クリックでの動作
@@ -45,3 +47,5 @@ gmailの左側にあるメニュー、githubのホーム左のrecent repositorie
 https://hakuhin.jp/js/mouse.html#MOUSE_01  
 https://teratail.com/questions/98672  
 https://teratail.com/questions/78508  
+=======
+>>>>>>> c185891 (設定画面作成中)
