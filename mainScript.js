@@ -98,7 +98,7 @@ window.addEventListener("load",  () => {
 let functions = [];
 
 functions[0] = () => {
-  console.log('functions 0');
+  console.log('????');
 };
 
 functions[1] = () => {
