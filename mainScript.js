@@ -50,11 +50,11 @@ let render = () => {
   if (niseX<0) {
     niseX = 0;
     niseVX *= -1;
-    functions[0](); // これ
+    //functions[0](); // これ
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
-    functions[1]();
+    //functions[1]();
   }
   if (niseY<0) {
     niseY = 0;
@@ -62,6 +62,11 @@ let render = () => {
   } else if (niseY>window.innerHeight) {
     niseY = window.innerHeight;
     niseVY *= -1;
+  }
+
+  if(document.body.onclick){
+    console.log('function 2');
+    document.elementFromPoint(niseX,niseY).click();
   }
 
   // レンダリング
