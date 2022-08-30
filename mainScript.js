@@ -50,7 +50,7 @@ let render = () => {
   if (niseX<0) {
     niseX = 0;
     niseVX *= -1;
-    //functions[0](); // これ
+    //functions[0](); 
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
@@ -63,12 +63,12 @@ let render = () => {
     niseY = window.innerHeight;
     niseVY *= -1;
   }
-
-  if(document.body.onclick){
-    console.log('function 2');
-    document.elementFromPoint(niseX,niseY).click();
-  }
-
+  // クリックアクション部分
+  document.onclick = function (){
+    functions[3]();
+    // 出力テスト
+    console.log(niseX);
+  };
   // レンダリング
   // カーソル、ニセカーソルを移動
   realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
@@ -114,3 +114,19 @@ functions[1] = () => {
 functions[2] = () => {
   console.log('function 2');
 };
+
+//ニセカーソルの位置にクリック出来るものがあればクリック
+functions[3] = () => {
+  //if(document.elementFromPoint(niseX,niseY)){
+    document.elementFromPoint(niseX,niseY).click();
+  //}
+};
+
+//クリックをdispatchEventで
+functions[4] = () => {
+  const elem = document.elementFromPoint(niseX, niseY);
+	elem.dispatchEvent(new MouseEvent("click", {
+		clientX: niseX,
+		clientY: niseY
+	}));
+}
