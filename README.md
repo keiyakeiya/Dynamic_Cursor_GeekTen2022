@@ -34,3 +34,15 @@ DynamicCursor
 - [ ] 設定画面
 - [ ] ニセカーソルがリンクにホバーした時の動作
 - [ ] アクション
+- [ ] 設定画面
+
+### クリックでの動作
+onclickでクリックを確認してfunctionsのdocument.elementFromPoint(niseX,niseY).click()でクリックしてる  
+->クリックできるところとできないところがある、elementFromPointがいけない？？？  
+(クリックできる例)  
+gmailの左側にあるメニュー、githubのホーム左のrecent repositoriesとか  
+
+参考サイト  
+https://hakuhin.jp/js/mouse.html#MOUSE_01  
+https://teratail.com/questions/98672  
+https://teratail.com/questions/78508  
