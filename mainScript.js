@@ -31,7 +31,6 @@ document.addEventListener("mousemove",(event) => {
 
 // クリックアクション部分
 document.addEventListener("click",(event) => {
-  // カーソル座標の更新
   document.elementFromPoint(niseX,niseY).click();
 },false);
 // アニメーションのレンダリング

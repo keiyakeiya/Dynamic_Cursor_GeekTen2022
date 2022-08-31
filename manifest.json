@@ -6,6 +6,9 @@
     "default_title": "Dynamic Cursor",
     "default_popup": "./popup/popup.html"
   },
+  "permissions": [
+    "tabs"
+  ],
   "options_page": "./options/options.html",
   "content_scripts": [
     {
