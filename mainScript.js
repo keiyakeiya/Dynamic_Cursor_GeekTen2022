@@ -31,7 +31,11 @@ document.addEventListener("mousemove",(event) => {
 
 // クリックアクション部分
 document.addEventListener("click",(event) => {
-  document.elementFromPoint(niseX,niseY).click();
+  niseCursorElem.style.display = 'none';
+  const targetElem = document.elementFromPoint(niseX,niseY);
+  targetElem.click();
+  console.log(targetElem);
+  niseCursorElem.style.display = 'block';
 },false);
 // アニメーションのレンダリング
 let render = () => {
@@ -54,7 +58,7 @@ let render = () => {
   if (niseX<0) {
     niseX = 0;
     niseVX *= -1;
-    //functions[0](); 
+    //functions[0]();
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
@@ -67,7 +71,7 @@ let render = () => {
     niseY = window.innerHeight;
     niseVY *= -1;
   }
-  
+
   // レンダリング
   // カーソル、ニセカーソルを移動
   realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
@@ -113,4 +117,3 @@ functions[1] = () => {
 functions[2] = () => {
   console.log('function 2');
 };
-
