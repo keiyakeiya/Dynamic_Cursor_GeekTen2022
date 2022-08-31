@@ -29,6 +29,11 @@ document.addEventListener("mousemove",(event) => {
   mouseY = event.clientY;
 },false);
 
+// クリックアクション部分
+document.addEventListener("click",(event) => {
+  // カーソル座標の更新
+  document.elementFromPoint(niseX,niseY).click();
+},false);
 // アニメーションのレンダリング
 let render = () => {
   // 力の計算
@@ -63,12 +68,7 @@ let render = () => {
     niseY = window.innerHeight;
     niseVY *= -1;
   }
-  // クリックアクション部分
-  document.onclick = function (){
-    functions[3]();
-    // 出力テスト
-    console.log(niseX);
-  };
+  
   // レンダリング
   // カーソル、ニセカーソルを移動
   realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
@@ -115,18 +115,3 @@ functions[2] = () => {
   console.log('function 2');
 };
 
-//ニセカーソルの位置にクリック出来るものがあればクリック
-functions[3] = () => {
-  //if(document.elementFromPoint(niseX,niseY)){
-    document.elementFromPoint(niseX,niseY).click();
-  //}
-};
-
-//クリックをdispatchEventで
-functions[4] = () => {
-  const elem = document.elementFromPoint(niseX, niseY);
-	elem.dispatchEvent(new MouseEvent("click", {
-		clientX: niseX,
-		clientY: niseY
-	}));
-}
