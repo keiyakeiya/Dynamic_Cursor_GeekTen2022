@@ -1,8 +1,6 @@
 // html要素が入った変数名には最後にElemを付ける, 配列ならElems
 
 let resistance = 0.1;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
-// let resistance = 0.5;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
-// let niseCursorMass  = 5;  // マウスの動きに対する感度 = カーソルの質量
 let niseCursorMass  = 10;  // マウスの動きに対する感度 = カーソルの質量
 
 let sensitivity = 2;
@@ -25,15 +23,25 @@ let isMouseMove = false;
 const minSpeed = 0.1;
 const maxSpeed = 10;
 
-// storage API test
-chrome.storage.local.set({testkey: 1}, function() {
-  console.log('this is storage test.');
-});
+chrome.storage.local.get(
+  [
+    'resistance',
+    'niseMass',
+    'lAct',
+    'rAct',
+    'tAct',
+    'bAct'
+  ],
+  (result) => {
+  resistance = (undefined !== result.resistance)? Number(result.resistance):resistance;
+  niseCursorMass = (undefined !== result.niseMass)? Number(result.niseMass):niseCursorMass;
+  leftAction = (undefined !== result.lAct)? Number(result.lAct):leftAction;
+  rightAction = (undefined !== result.rAct)? Number(result.rAct):rightAction;
+  topAction = (undefined !== result.tAct)? Number(result.tAct):topAction;
+  bottomAction = (undefined !== result.bAct)? Number(result.bAct):bottomAction;
+  console.log('resistance: ' + resistance);
+  console.log('niseCursorMass: ' + niseCursorMass);
 
-chrome.storage.local.get(['testkey'], function(result) {
-  console.log('testkey is ' + result.testkey);
-  console.log('key: hoge is not exist, so...' + result.hoge);
-  console.log('is key hoge undifined? '+ (undefined === result.hoge));
 });
 
 // カーソル変更
