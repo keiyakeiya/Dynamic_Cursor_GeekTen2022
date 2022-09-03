@@ -1,10 +1,10 @@
 body {
-  cursor: none;
+  /* cursor: none; */
 }
 
-a {
+/* a {
   cursor: pointer;
-}
+} */
 
 #realCursor {
   --cursorSize: 30px;
@@ -15,6 +15,7 @@ a {
   background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
+  z-index: 2147483646;
 }
 
 #niseCursor {
@@ -26,8 +27,26 @@ a {
   background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
+  z-index: 2147483647;
 
   /* テスト用 */
   background-color: hsla(200, 100%, 50%, 1.0);
   filter: drop-shadow(3px 3px 5px hsla(0, 0%, 10%, 1.0));
+}
+
+#controlArea {
+  --margin: 30px;
+  --AreaW: 25%;
+  --AreaH: 25%;
+  position: fixed;
+  width: var(--AreaW);
+  height: var(--AreaH);
+  /* border-radius: 50%; */
+  background-color: hsla(0, 0%, 50%, 0.25);
+  right: var(--margin);
+  bottom: var(--margin);
+  z-index: 2147483645;
+
+  cursor: move;
+
 }
