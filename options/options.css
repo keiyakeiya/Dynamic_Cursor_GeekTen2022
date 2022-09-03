@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: hsl(225, 10%, 85%);
+  background-color: hsl(225, 10%, 85%);
 
 }
 
@@ -24,7 +24,7 @@ body {
   padding: 50px;
 
   border-radius: 5px;
-  background: hsl(225, 10%, 85%);
+  background-color: hsl(225, 10%, 85%);
   box-shadow:
     inset 10px 10px 20px hsl(219, 4%, 72%),
     inset -10px -10px 20px hsl(226, 81%, 97%);
@@ -55,7 +55,7 @@ body {
   margin-top: 20px;
 
   border-radius: 15px;
-  background: hsl(225, 10%, 85%);
+  background-color: hsl(225, 10%, 85%);
   box-shadow:
     10px 10px 20px hsl(219, 4%, 72%),
     -10px -10px 20px hsl(226, 81%, 97%);
@@ -89,7 +89,7 @@ body {
   position: relative;
 
   border-radius: 15px;
-  background: hsl(225, 10%, 85%);
+  background-color: hsl(225, 10%, 85%);
   box-shadow:
     10px 10px 20px hsl(219, 4%, 72%),
     -10px -10px 20px hsl(226, 81%, 97%);
@@ -98,13 +98,61 @@ body {
 
 #actions_setting #screen {
   width: 400px;
-  height: 260px;
-  background-color: hsl(0, 0%, 60%);
-  border: 15px solid #000;
-  border-right-color: #ff00ff;
+  height: 280px;
+  background-color: hsl(225, 10%, 85%);
+  /* border: 1px solid #000; */
+  /* border-right-color: #ff00ff; */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
+
+  padding: 20px;
+  border-radius: 10px;
+
+  box-shadow:
+    inset 5px 5px 10px hsl(219, 4%, 72%),
+    inset -5px -5px 10px hsl(226, 81%, 97%);
+
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.actionBox{
+  /* width: 250px;
+  height: 130px; */
+  padding: 5px 5px;
+  box-sizing: border-box;
+
+  border-radius: 15px;
+  background-color: hsl(225, 10%, 85%);
+  box-shadow:
+    5px 5px 10px hsl(219, 4%, 72%),
+    -5px -5px 10px hsl(226, 81%, 97%);
+}
+
+.actionBox input {
+  width: 50%;
+}
+
+.actionBox#topAction {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+}
+
+.actionBox#bottomAction {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+.actionBox#leftAction {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.actionBox#rightAction {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
 }

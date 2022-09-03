@@ -25,6 +25,17 @@ let isMouseMove = false;
 const minSpeed = 0.1;
 const maxSpeed = 10;
 
+// storage API test
+chrome.storage.local.set({testkey: 1}, function() {
+  console.log('this is storage test.');
+});
+
+chrome.storage.local.get(['testkey'], function(result) {
+  console.log('testkey is ' + result.testkey);
+  console.log('key: hoge is not exist, so...' + result.hoge);
+  console.log('is key hoge undifined? '+ (undefined === result.hoge));
+});
+
 // カーソル変更
 const realCursorElem = document.createElement('div'); //カーソル要素
 realCursorElem.id = 'realCursor';
