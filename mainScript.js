@@ -5,7 +5,7 @@ let resistance = 0.1;  //　抵抗のかかり具合 = 速度に比例する抵�
 // let niseCursorMass  = 5;  // マウスの動きに対する感度 = カーソルの質量
 let niseCursorMass  = 10;  // マウスの動きに対する感度 = カーソルの質量
 
-let sensitivity = 3;
+let sensitivity = 2;
 
 // ニセカーソルの座標
 let niseX, niseY;
@@ -22,7 +22,7 @@ let topAction = 2;
 let bottomAction = 3;
 
 let isMouseMove = false;
-const minSpeed = 1;
+const minSpeed = 0.1;
 const maxSpeed = 10;
 
 // カーソル変更
@@ -45,10 +45,10 @@ ctrlAreaElem.addEventListener("mousemove",(event) => {
 },false);
 
 // クリックアクション部分
-realCursorElem.addEventListener("click",(event) => {
+ctrlAreaElem.addEventListener("click",(event) => {
+// realCursorElem.addEventListener("click",(event) => {
 // realCursorElem.addEventListener("auxclick",(event) => {
   console.log(event.button);
-  console.log(event);
   niseCursorElem.style.display = 'none';
   event.preventDefault();
   const targetElem = document.elementFromPoint(niseX,niseY);
@@ -62,19 +62,18 @@ let render = () => {
   // F=force, v=velocity(niseCursor), a=Acceleration(niseCursor), x=coordinate(cursor), t=time(frame), m=mass(niseCursor), resistance=constant
   // F = x(t) - x(t-1) - resistance*v(t-1)
   // v(t) - v(t-1) = a(t) = F/m = (x(t) - x(t-1) - resistance*v(t-1))/m
-  // niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
-  // niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+  niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
+  niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
 
   // if (isMouseMove) {
-  if (isMouseMove) {
-    // マウス移動中：マウスと連動
-    niseVX = sensitivity*(mouseX-pmouseX);
-    niseVY = sensitivity*(mouseY-pmouseY);
-  } else {
-    // マウス停止中：運動方程式を適用
-    niseVX += -resistance*niseVX/niseCursorMass;
-    niseVY += -resistance*niseVY/niseCursorMass;
-  }
+  //   // マウス移動中：マウスと連動
+  //   niseVX = sensitivity*(mouseX-pmouseX);
+  //   niseVY = sensitivity*(mouseY-pmouseY);
+  // } else {
+  //   // マウス停止中：運動方程式を適用
+  //   niseVX += -resistance*niseVX/niseCursorMass;
+  //   niseVY += -resistance*niseVY/niseCursorMass;
+  // }
 
   const vMag = Math.sqrt(Math.pow(niseVX,2) + Math.pow(niseVY, 2));
   if (vMag < minSpeed) {
@@ -118,7 +117,7 @@ let render = () => {
 
   // レンダリング
   // カーソル、ニセカーソルを移動
-  realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  // realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
   niseCursorElem.style.transform = `translate(${niseX}px, ${niseY}px)`;
 
   // マウス座標の更新
@@ -134,7 +133,7 @@ let render = () => {
 // 初期化処理
 window.addEventListener("load",  () => {
   // カーソル、ニセカーソル要素の追加
-  document.body.insertAdjacentElement('beforeend', realCursorElem);
+  // document.body.insertAdjacentElement('beforeend', realCursorElem);
   document.body.insertAdjacentElement('beforeend', niseCursorElem);
   document.body.insertAdjacentElement('beforeend', ctrlAreaElem);
 

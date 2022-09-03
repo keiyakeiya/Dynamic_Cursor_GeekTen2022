@@ -1,10 +1,10 @@
 body {
-  cursor: none;
+  /* cursor: none; */
 }
 
-a {
+/* a {
   cursor: pointer;
-}
+} */
 
 #realCursor {
   --cursorSize: 30px;
@@ -46,4 +46,7 @@ a {
   right: var(--margin);
   bottom: var(--margin);
   z-index: 2147483645;
+
+  cursor: move;
+
 }
