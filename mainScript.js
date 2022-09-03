@@ -31,8 +31,13 @@ realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
 
+// コントロールエリア
+const ctrlAreaElem = document.createElement('div');
+ctrlAreaElem.id = 'controlArea'
+
 // マウス移動中の処理
-document.addEventListener("mousemove",(event) => {
+// document.addEventListener("mousemove",(event) => {
+ctrlAreaElem.addEventListener("mousemove",(event) => {
   // カーソル座標の更新
   mouseX = event.clientX;
   mouseY = event.clientY;
@@ -131,6 +136,7 @@ window.addEventListener("load",  () => {
   // カーソル、ニセカーソル要素の追加
   document.body.insertAdjacentElement('beforeend', realCursorElem);
   document.body.insertAdjacentElement('beforeend', niseCursorElem);
+  document.body.insertAdjacentElement('beforeend', ctrlAreaElem);
 
   // 初期位置を真ん中に設定
   niseX   = window.innerWidth/2;
