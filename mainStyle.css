@@ -15,6 +15,7 @@ a {
   background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
+  z-index: 2147483646;
 }
 
 #niseCursor {
@@ -26,6 +27,7 @@ a {
   background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
+  z-index: 2147483647;
 
   /* テスト用 */
   background-color: hsla(200, 100%, 50%, 1.0);
