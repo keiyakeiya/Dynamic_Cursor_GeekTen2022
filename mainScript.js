@@ -15,6 +15,16 @@ let mouseX, mouseY;
 // 1フレーム前のカーソルの位置
 let pmouseX, pmouseY;
 
+// storage API test
+chrome.storage.local.set({testkey: 1}, function() {
+  console.log('this is storage test.');
+});
+
+chrome.storage.local.get(['testkey'], function(result) {
+  console.log('testkey is ' + result.testkey);
+  console.log('key: hoge is not exist, so...' + result.hoge);
+  console.log('is key hoge undifined? '+ (undefined === result.hoge));
+});
 
 // カーソル変更
 const realCursorElem = document.createElement('div'); //カーソル要素
