@@ -14,10 +14,10 @@ let niseVY =0;
 let mouseX, mouseY;
 // 1フレーム前のカーソルの位置
 let pmouseX, pmouseY;
-let leftAction = 0;
-let rightAction = 1;
-let topAction = 2;
-let bottomAction = 3;
+let leftAction = 1;
+let rightAction = 2;
+let topAction = 3;
+let bottomAction = 4;
 
 let isMouseMove = false;
 const minSpeed = 0.1;
@@ -45,8 +45,8 @@ chrome.storage.local.get(
 });
 
 // カーソル変更
-const realCursorElem = document.createElement('div'); //カーソル要素
-realCursorElem.id = 'realCursor';
+// const realCursorElem = document.createElement('div'); //カーソル要素
+// realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
 
@@ -118,26 +118,31 @@ let render = () => {
   if (niseX<0) {
     niseX = 0;
     niseVX *= -1;
-    functions[leftAction]();
+    functions(leftAction);
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
     niseVX *= -1;
-    functions[rightAction]();
+    functions(rightAction);
   }
   if (niseY<0) {
     niseY = 0;
     niseVY *= -1;
-    functions[topAction]();
+    functions(topAction);
   } else if (niseY>window.innerHeight) {
     niseY = window.innerHeight;
     niseVY *= -1;
-    functions[bottomAction]();
+    functions(bottomAction);
   }
 
   // レンダリング
   // カーソル、ニセカーソルを移動
   // realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
   niseCursorElem.style.transform = `translate(${niseX}px, ${niseY}px)`;
+
+  const targetElem = document.elementFromPoint(niseX,niseY);
+  if(targetElem.tagName === 'A') {
+
+  }
 
   // マウス座標の更新
   pmouseX = mouseX;
@@ -168,26 +173,25 @@ window.addEventListener("load",  () => {
   render();
 },false);
 
-window.addEventListener("mouseenter", () => {
-  console.log('mouse enter');
-},false);
 
-let functions = [];
-
-functions[0] = () => {
-  // history.back();
-  console.log('function 0');
-};
-
-functions[1] = () => {
-  // history.forward();
-  console.log('function 1');
-};
-
-functions[2] = () => {
-  console.log('function 2');
-};
-
-functions[3] = () => {
-  console.log('function 3');
+let functions = (actionIn) => {
+  switch (actionIn) {
+    case 0:
+      // no action
+      break;
+    case 1:
+    //   // history.back();
+      console.log('function 1');
+      break;
+    case 2:
+    //   // history.forward();
+      console.log('function 2');
+      break;
+    case 3:
+      console.log('function 3');
+      break;
+    case 4:
+      console.log('function 4');
+      break;
+  }
 };
