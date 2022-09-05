@@ -19,11 +19,11 @@ body {
 }
 
 #niseCursor {
-  --cursorSize: 20px;
+  --cursorSize: 40px;
   position: fixed;
   width: var(--cursorSize);
   height: var(--cursorSize);
-  border-radius: 50%;
+  /* border-radius: 50%; */
   background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
@@ -32,6 +32,9 @@ body {
   /* テスト用 */
   background-color: hsla(200, 100%, 50%, 1.0);
   filter: drop-shadow(3px 3px 5px hsla(0, 0%, 10%, 1.0));
+
+  /* 形 */
+  clip-path: polygon(50% 50%, 100% 75%, 75% 100%);
 }
 
 #controlArea {

@@ -140,9 +140,9 @@ let render = () => {
   niseCursorElem.style.transform = `translate(${niseX}px, ${niseY}px)`;
 
   const targetElem = document.elementFromPoint(niseX,niseY);
-  if(targetElem.tagName === 'A') {
-
-  }
+  // if(targetElem.tagName === 'A') {
+  //
+  // }
 
   // マウス座標の更新
   pmouseX = mouseX;
