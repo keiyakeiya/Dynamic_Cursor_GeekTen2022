@@ -13,34 +13,55 @@
       <div id="container">
         <div id='props_setting'>
           <div class="propBox">
-            <h2 class="propName">property1</h2>
+            <h2 class="propName">resistance</h2>
             <div class="propInput">
-              <span class="propValue">15</span>
-              <input type="range" min="0" max="10" step="1" value="5">
+              <span class="propValue">0.1</span>
+              <input type="range" min="0" max="1" step="0.1" value="0.1">
             </div>
           </div>
           <div class="propBox">
-            <h2 class="propName">property2</h2>
+            <h2 class="propName">mass</h2>
             <div class="propInput">
-              <span class="propValue">15</span>
-              <input type="range" min="0" max="10" step="1" value="5">
-            </div>
-          </div>
-          <div class="propBox">
-            <h2 class="propName">property3</h2>
-            <div class="propInput">
-              <span class="propValue">15</span>
-              <input type="range" min="0" max="10" step="1" value="5">
+              <span class="propValue">10</span>
+              <input type="range" min="0" max="30" step="1" value="10">
             </div>
           </div>
         </div>
         <div id="actions_setting">
           <h2>actions</h2>
           <div id="screen">
-
-          </div>
+            <div class="actionBox" id="topAction">
+              <h3 class="actionName">Top Action</h3>
+              <div class="actionInput">
+                <select id="topAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="bottomAction">
+              <h3 class="actionName">Bottom Action</h3>
+              <div class="actionInput">
+                <select id="bottomAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="leftAction">
+              <h3 class="actionName">Left Action</h3>
+              <div class="actionInput">
+                <select id="leftAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="rightAction">
+              <h3 class="actionName">Right Action</h3>
+              <div class="actionInput">
+                <select id="rightAction_select">
+                </select>
+              </div>
+            </div>
+          <div>
         </div>
       </div>
     </div>
+    <script src="./options.js"></script>
   </body>
 </html>
