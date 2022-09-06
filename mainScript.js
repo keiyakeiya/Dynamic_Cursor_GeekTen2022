@@ -1,9 +1,9 @@
 // html要素が入った変数名には最後にElemを付ける, 配列ならElems
 
 let resistance = 0.1;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
-let niseCursorMass  = 10;  // マウスの動きに対する感度 = カーソルの質量
+let niseCursorMass  = 10;  // カーソルの質量
 
-let sensitivity = 2;
+let sensitivity = 3; // マウスの動きに対する感度
 
 // ニセカーソルの座標
 let niseX, niseY;
@@ -20,7 +20,9 @@ let topAction = 3;
 let bottomAction = 4;
 
 let isMouseMove = false;
-const minSpeed = 0.1;
+let isMouseDrag = false;
+// const minSpeed = 0.1;
+const minSpeed = 0.0;
 const maxSpeed = 10;
 
 chrome.storage.local.get(
@@ -45,8 +47,8 @@ chrome.storage.local.get(
 });
 
 // カーソル変更
-// const realCursorElem = document.createElement('div'); //カーソル要素
-// realCursorElem.id = 'realCursor';
+const realCursorElem = document.createElement('div'); //カーソル要素
+realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
 
@@ -54,9 +56,18 @@ niseCursorElem.id = 'niseCursor';
 const ctrlAreaElem = document.createElement('div');
 ctrlAreaElem.id = 'controlArea'
 
+document.addEventListener("mousedown",(event) => {
+  event.preventDefault();
+  isMouseDrag = true;
+},false);
+
+document.addEventListener("mouseup",(event) => {
+  isMouseDrag = false;
+},false);
+
 // マウス移動中の処理
-// document.addEventListener("mousemove",(event) => {
-ctrlAreaElem.addEventListener("mousemove",(event) => {
+document.addEventListener("mousemove",(event) => {
+// ctrlAreaElem.addEventListener("mousemove",(event) => {
   // カーソル座標の更新
   mouseX = event.clientX;
   mouseY = event.clientY;
@@ -64,9 +75,11 @@ ctrlAreaElem.addEventListener("mousemove",(event) => {
 },false);
 
 // クリックアクション部分
-ctrlAreaElem.addEventListener("click",(event) => {
+// ctrlAreaElem.addEventListener("click",(event) => {
 // realCursorElem.addEventListener("click",(event) => {
 // realCursorElem.addEventListener("auxclick",(event) => {
+// document.addEventListener("click",(event) => {
+realCursorElem.addEventListener("click",(event) => {
   console.log(event.button);
   niseCursorElem.style.display = 'none';
   event.preventDefault();
@@ -81,18 +94,19 @@ let render = () => {
   // F=force, v=velocity(niseCursor), a=Acceleration(niseCursor), x=coordinate(cursor), t=time(frame), m=mass(niseCursor), resistance=constant
   // F = x(t) - x(t-1) - resistance*v(t-1)
   // v(t) - v(t-1) = a(t) = F/m = (x(t) - x(t-1) - resistance*v(t-1))/m
-  niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
-  niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+  // niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
+  // niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
 
-  // if (isMouseMove) {
-  //   // マウス移動中：マウスと連動
-  //   niseVX = sensitivity*(mouseX-pmouseX);
-  //   niseVY = sensitivity*(mouseY-pmouseY);
-  // } else {
-  //   // マウス停止中：運動方程式を適用
-  //   niseVX += -resistance*niseVX/niseCursorMass;
-  //   niseVY += -resistance*niseVY/niseCursorMass;
-  // }
+  // if (isMouseMove && isMouseDrag) {
+  if (isMouseDrag) {
+    // マウス移動中：マウスと連動
+    niseVX = sensitivity*(mouseX-pmouseX);
+    niseVY = sensitivity*(mouseY-pmouseY);
+  } else {
+    // マウス停止中：運動方程式を適用
+    niseVX += -resistance*niseVX/niseCursorMass;
+    niseVY += -resistance*niseVY/niseCursorMass;
+  }
 
   const vMag = Math.sqrt(Math.pow(niseVX,2) + Math.pow(niseVY, 2));
   if (vMag < minSpeed) {
@@ -136,7 +150,7 @@ let render = () => {
 
   // レンダリング
   // カーソル、ニセカーソルを移動
-  // realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  realCursorElem.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
   niseCursorElem.style.transform = `translate(${niseX}px, ${niseY}px)`;
 
   const targetElem = document.elementFromPoint(niseX,niseY);
@@ -157,9 +171,9 @@ let render = () => {
 // 初期化処理
 window.addEventListener("load",  () => {
   // カーソル、ニセカーソル要素の追加
-  // document.body.insertAdjacentElement('beforeend', realCursorElem);
+  document.body.insertAdjacentElement('beforeend', realCursorElem);
   document.body.insertAdjacentElement('beforeend', niseCursorElem);
-  document.body.insertAdjacentElement('beforeend', ctrlAreaElem);
+  // document.body.insertAdjacentElement('beforeend', ctrlAreaElem);
 
   // 初期位置を真ん中に設定
   niseX   = window.innerWidth/2;
