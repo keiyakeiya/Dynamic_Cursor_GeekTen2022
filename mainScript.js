@@ -3,7 +3,7 @@
 let resistance = 0.1;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
 let niseCursorMass  = 10;  // カーソルの質量
 
-let sensitivity = 3; // マウスの動きに対する感度
+let sensitivity = 1; // マウスの動きに対する感度
 
 // ニセカーソルの座標
 let niseX, niseY;
@@ -14,6 +14,7 @@ let niseVY =0;
 let mouseX, mouseY;
 // 1フレーム前のカーソルの位置
 let pmouseX, pmouseY;
+let dragStartX, dragStartY;
 let leftAction = 1;
 let rightAction = 2;
 let topAction = 3;
@@ -23,7 +24,7 @@ let isMouseMove = false;
 let isMouseDrag = false;
 // const minSpeed = 0.1;
 const minSpeed = 0.0;
-const maxSpeed = 10;
+const maxSpeed = 100;
 
 chrome.storage.local.get(
   [
@@ -59,6 +60,8 @@ ctrlAreaElem.id = 'controlArea'
 document.addEventListener("mousedown",(event) => {
   event.preventDefault();
   isMouseDrag = true;
+  dragStartX = mouseX;
+  dragStartY = mouseY;
 },false);
 
 document.addEventListener("mouseup",(event) => {
@@ -80,13 +83,15 @@ document.addEventListener("mousemove",(event) => {
 // realCursorElem.addEventListener("auxclick",(event) => {
 // document.addEventListener("click",(event) => {
 realCursorElem.addEventListener("click",(event) => {
-  console.log(event.button);
-  niseCursorElem.style.display = 'none';
-  event.preventDefault();
-  const targetElem = document.elementFromPoint(niseX,niseY);
-  targetElem.click();
-  console.log(targetElem);
-  niseCursorElem.style.display = 'block';
+  if (dragStartX === mouseX && dragStartY === mouseY) {
+    console.log(event.button);
+    niseCursorElem.style.display = 'none';
+    event.preventDefault();
+    const targetElem = document.elementFromPoint(niseX,niseY);
+    targetElem.click();
+    console.log(targetElem);
+    niseCursorElem.style.display = 'block';
+  }
 },false);
 // アニメーションのレンダリング
 let render = () => {
