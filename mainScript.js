@@ -1,6 +1,6 @@
 // html要素が入った変数名には最後にElemを付ける, 配列ならElems
 
-let resistance = 0.1;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
+let resistance = 0.5;  //　抵抗のかかり具合 = 速度に比例する抵抗の係数
 let niseCursorMass  = 10;  // カーソルの質量
 
 let sensitivity = 1; // マウスの動きに対する感度
@@ -52,6 +52,9 @@ const realCursorElem = document.createElement('div'); //カーソル要素
 realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
+const niseChildElem = document.createElement('div'); //ニセカーソル中身要素
+niseChildElem.id = 'niseChild';
+niseCursorElem.appendChild(niseChildElem);
 
 // コントロールエリア
 const ctrlAreaElem = document.createElement('div');
