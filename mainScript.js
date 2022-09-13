@@ -112,8 +112,10 @@ let render = () => {
     niseVY = sensitivity*(mouseY-pmouseY);
   } else {
     // マウス停止中：運動方程式を適用
-    niseVX += -resistance*niseVX/niseCursorMass;
-    niseVY += -resistance*niseVY/niseCursorMass;
+    let gmM = 10000; // G*m*Mをひとまとめに
+    let distdist = Math.max(Math.pow(mouseX-niseX, 2)+Math.pow(mouseY-niseY, 2), 0.000001); //距離の２乗, 0割りしないように&重力が大きくなりすぎないように
+    niseVX += ((gmM*(mouseX-niseX)/Math.pow(distdist,3/2)) -resistance*niseVX)/niseCursorMass;
+    niseVY += ((gmM*(mouseY-niseY)/Math.pow(distdist,3/2)) -resistance*niseVY)/niseCursorMass;
   }
 
   const vMag = Math.sqrt(Math.pow(niseVX,2) + Math.pow(niseVY, 2));
