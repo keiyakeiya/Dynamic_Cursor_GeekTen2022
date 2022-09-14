@@ -104,7 +104,7 @@ let render = () => {
   // v(t) - v(t-1) = a(t) = F/m = (x(t) - x(t-1) - resistance*v(t-1))/m
   // niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
   // niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
-
+  
   // if (isMouseMove && isMouseDrag) {
   if (isMouseDrag) {
     // マウス移動中：マウスと連動
@@ -112,7 +112,7 @@ let render = () => {
     niseVY = sensitivity*(mouseY-pmouseY);
   } else {
     // マウス停止中：運動方程式を適用
-    let gmM = 10000; // G*m*Mをひとまとめに
+    let gmM = 1000000; // G*m*Mをひとまとめに
     let distdist = Math.max(Math.pow(mouseX-niseX, 2)+Math.pow(mouseY-niseY, 2), 0.000001); //距離の２乗, 0割りしないように&重力が大きくなりすぎないように
     niseVX += ((gmM*(mouseX-niseX)/Math.pow(distdist,3/2)) -resistance*niseVX)/niseCursorMass;
     niseVY += ((gmM*(mouseY-niseY)/Math.pow(distdist,3/2)) -resistance*niseVY)/niseCursorMass;
