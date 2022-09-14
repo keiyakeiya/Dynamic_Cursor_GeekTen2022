@@ -89,7 +89,8 @@ actionInputElems.right.addEventListener("change", (event) => {
   chrome.storage.local.set({rAct: actionInputElems.right.value}, () => {});
 },false);
 
-document.getElementById("reload").addEventListener('click',(event) => {
+//document.getElementById("reload").addEventListener('click',(event) => {
   //window.location.reload();
-  console.log('button');
-},false);
+  //console.log('button');
+//},false);
+

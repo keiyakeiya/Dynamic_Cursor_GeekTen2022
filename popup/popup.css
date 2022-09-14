@@ -165,13 +165,13 @@ body {
   grid-row: 2 / 3;
   grid-column: 3 / 4;
 }
-
+/*
 #reload{
   position: relative;
   display: flex;
   padding: 25px 0 0 0;
 }
-.reloadButton a {
+.reloadButton  {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -204,3 +204,4 @@ body {
   border-top: 3px solid #333333;
   border-right: 3px solid #333333;
 }
+*/

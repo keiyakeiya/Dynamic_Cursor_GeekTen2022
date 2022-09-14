@@ -22,6 +22,8 @@ let bottomAction = 4;
 let isMouseMove = false;
 const minSpeed = 0.1;
 const maxSpeed = 10;
+let niseflg = true;
+
 
 chrome.storage.local.get(
   [
@@ -43,6 +45,15 @@ chrome.storage.local.get(
   console.log('niseCursorMass: ' + niseCursorMass);
 
 });
+//ニセカーソルON OFFのフラグ
+document.body.addEventListener('keyup',
+    event => {
+        if (event.key === 'q') {
+           if(niseflg === false)niseflg = true;
+           else niseflg = false;
+           console.log(niseflg);
+        }
+    });
 
 // カーソル変更
 // const realCursorElem = document.createElement('div'); //カーソル要素
@@ -67,6 +78,7 @@ ctrlAreaElem.addEventListener("mousemove",(event) => {
 ctrlAreaElem.addEventListener("click",(event) => {
 // realCursorElem.addEventListener("click",(event) => {
 // realCursorElem.addEventListener("auxclick",(event) => {
+  if(niseflg==true){
   console.log(event.button);
   niseCursorElem.style.display = 'none';
   event.preventDefault();
@@ -74,16 +86,24 @@ ctrlAreaElem.addEventListener("click",(event) => {
   targetElem.click();
   console.log(targetElem);
   niseCursorElem.style.display = 'block';
+  }
 },false);
+
+
 // アニメーションのレンダリング
 let render = () => {
   // 力の計算
   // F=force, v=velocity(niseCursor), a=Acceleration(niseCursor), x=coordinate(cursor), t=time(frame), m=mass(niseCursor), resistance=constant
   // F = x(t) - x(t-1) - resistance*v(t-1)
   // v(t) - v(t-1) = a(t) = F/m = (x(t) - x(t-1) - resistance*v(t-1))/m
+  if(niseflg == true){
   niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
   niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
-
+  }else{
+    niseVX = 0;
+    niseVY = 0;
+  }
+  
   // if (isMouseMove) {
   //   // マウス移動中：マウスと連動
   //   niseVX = sensitivity*(mouseX-pmouseX);
@@ -173,7 +193,6 @@ window.addEventListener("load",  () => {
   render();
 },false);
 
-
 let functions = (actionIn) => {
   switch (actionIn) {
     case 0:
@@ -187,11 +206,13 @@ let functions = (actionIn) => {
     //   // history.forward();
       console.log('function 2');
       break;
-    case 3:
-      console.log('function 3');
+    case 3://新しいタブを開く
+      open('https://www.google.co.jp/');
       break;
     case 4:
-      console.log('function 4');
+      break;
+    case 5:
       break;
   }
 };
+
