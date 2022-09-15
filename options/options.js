@@ -29,6 +29,7 @@ const actionNameList = [
 const cursorModeList = [
   '慣性モード',
   'ばねモード',
+  '万有引力モード',
   '重力モード'
 ];
 
