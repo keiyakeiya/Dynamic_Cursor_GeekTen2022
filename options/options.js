@@ -5,6 +5,9 @@ let rightAction = 2;
 let topAction = 3;
 let bottomAction = 4;
 
+//カーソルの動作モード初期値は慣性
+let modeSelect =0;
+
 let propInputElems = document.querySelectorAll('.propInput input');
 let propDispElems = document.querySelectorAll('.propInput .propValue');
 let actionInputElems = {};
@@ -13,12 +16,20 @@ actionInputElems.bottom = document.querySelector('#bottomAction_select');
 actionInputElems.left = document.querySelector('#leftAction_select');
 actionInputElems.right = document.querySelector('#rightAction_select');
 
+let cursorModeElems = document.querySelector('#mode_select');
+
 const actionNameList = [
   'none',
   'back',
   'next',
   'action3',
   'action4'
+];
+//カーソルの動作モードの種類
+const cursorModeList = [
+  '慣性モード',
+  'ばねモード',
+  '重力モード'
 ];
 
 for(let i=0; i<actionNameList.length; i++) {
@@ -31,6 +42,13 @@ for(let i=0; i<actionNameList.length; i++) {
   actionInputElems.right.insertAdjacentElement('beforeend',optionElem.cloneNode(true));
 }
 
+for(let i=0; i<cursorModeList.length; i++) {
+  const modeElem = document.createElement('option');
+  modeElem.innerHTML = cursorModeList[i];
+  modeElem.value = i;
+  cursorModeElems.insertAdjacentElement('beforeend',modeElem.cloneNode(true));
+}
+
 chrome.storage.local.get(
   [
     'resistance',
@@ -38,7 +56,8 @@ chrome.storage.local.get(
     'lAct',
     'rAct',
     'tAct',
-    'bAct'
+    'bAct',
+    'mode'
   ],
   (result) => {
   resistance = (undefined !== result.resistance)? Number(result.resistance):resistance;
@@ -47,6 +66,8 @@ chrome.storage.local.get(
   rightAction = (undefined !== result.rAct)? Number(result.rAct):rightAction;
   topAction = (undefined !== result.tAct)? Number(result.tAct):topAction;
   bottomAction = (undefined !== result.bAct)? Number(result.bAct):bottomAction;
+
+  modeSelect = (undefined !== result.mode)? Number(result.mode):modeSelect;
 
   propDispElems[0].innerHTML = resistance;
   propInputElems[0].value = resistance;
@@ -57,6 +78,8 @@ chrome.storage.local.get(
   actionInputElems.bottom.value = bottomAction;
   actionInputElems.left.value = leftAction;
   actionInputElems.right.value = rightAction;
+
+  cursorModeElems.value = modeSelect;
 });
 
 for(let i=0; i<propInputElems.length; i++) {
@@ -87,6 +110,10 @@ actionInputElems.left.addEventListener("change", (event) => {
 
 actionInputElems.right.addEventListener("change", (event) => {
   chrome.storage.local.set({rAct: actionInputElems.right.value}, () => {});
+},false);
+
+cursorModeElems.addEventListener("change", (event) => {
+  chrome.storage.local.set({mode: cursorModeElems.value}, () => {});
 },false);
 
 //document.getElementById("reload").addEventListener('click',(event) => {

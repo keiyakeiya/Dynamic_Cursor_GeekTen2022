@@ -19,6 +19,8 @@ let rightAction = 2;
 let topAction = 3;
 let bottomAction = 4;
 
+let modeSelect =0;
+
 let isMouseMove = false;
 const minSpeed = 0.1;
 const maxSpeed = 10;
@@ -32,7 +34,8 @@ chrome.storage.local.get(
     'lAct',
     'rAct',
     'tAct',
-    'bAct'
+    'bAct',
+    'mode'
   ],
   (result) => {
   resistance = (undefined !== result.resistance)? Number(result.resistance):resistance;
@@ -41,9 +44,10 @@ chrome.storage.local.get(
   rightAction = (undefined !== result.rAct)? Number(result.rAct):rightAction;
   topAction = (undefined !== result.tAct)? Number(result.tAct):topAction;
   bottomAction = (undefined !== result.bAct)? Number(result.bAct):bottomAction;
+  modeSelect = (undefined !== result.mode)? Number(result.mode):modeSelect;
   console.log('resistance: ' + resistance);
   console.log('niseCursorMass: ' + niseCursorMass);
-
+  console.log(modeSelect);
 });
 //ニセカーソルON OFFのフラグ
 document.body.addEventListener('keyup',
@@ -97,8 +101,24 @@ let render = () => {
   // F = x(t) - x(t-1) - resistance*v(t-1)
   // v(t) - v(t-1) = a(t) = F/m = (x(t) - x(t-1) - resistance*v(t-1))/m
   if(niseflg == true){
-  niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
-  niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+    if(modeSelect == 0){
+      niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
+      niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+    }
+    else if(modeSelect == 1){
+      let l = 300; 
+    //ニセカーソルとカーソルの距離
+    let r = Math.sqrt(Math.pow(Math.abs(mouseX - niseX),2)+Math.pow(Math.abs(mouseY+niseY),2));
+    // v(t) - v(t-1) = a(t) = F/m = -k(x-l)/m
+    niseVX += resistance*(Math.abs(mouseX-niseX)-l)/niseCursorMass;
+    niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
+    }
+    else if(modeSelect == 2){
+      let gmM = 100; // G*m*Mをひとまとめに
+      let distdist = Math.max(Math.pow(mouseX-niseX, 2)+Math.pow(mouseY-niseY, 2), 0.000001); //距離の２乗, 0割りしないように&重力が大きくなりすぎないように
+      niseVX += ((gmM*(mouseX-niseX)/Math.pow(distdist,3/2)) -resistance*niseVX)/niseCursorMass;
+      niseVY += ((gmM*(mouseY-niseY)/Math.pow(distdist,3/2)) -resistance*niseVY)/niseCursorMass;
+    }
   }else{
     niseVX = 0;
     niseVY = 0;
