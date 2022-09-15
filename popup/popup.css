@@ -1,11 +1,11 @@
 html {
-  height: 500px;
+  height: 600px;
   width: 500px;
 }
 body {
   margin: 0;
   width: 500px;
-  height: 450px;
+  height: 600px;
   /*display: flex;*/
   flex-direction: column;
   justify-content: center;
@@ -22,7 +22,7 @@ body {
   align-items: center;
   /*width: 60%;*/
 
-  padding: 10px 10px 30px 10px;
+  padding: 10px 10px 20px 10px;
 
   border-radius: 5px;
   background-color: hsl(225, 10%, 85%);
@@ -46,17 +46,52 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
+#cursol_setting {
+  padding: 5px 20px;
+  margin: 20px 0;
+  width: 400px;
+  height: 230px;
+  position: relative;
+  /*flex-flow: column;*/
+  border-radius: 15px;
+  background-color: hsl(225, 10%, 85%);
+  box-shadow:
+    10px 10px 20px hsl(219, 4%, 72%),
+    -10px -10px 20px hsl(226, 81%, 97%);
 
+}
+.cur_title {
+  margin: 0;
+}
+#cursol_setting #screen {
+  width: 400px;
+  height: 180px;
+  background-color: hsl(225, 10%, 85%);
+  /* border: 1px solid #000; */
+  /* border-right-color: #ff00ff; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  margin-top:10px;
+  padding: 20px;
+  border-radius: 10px;
+  /*display: flex;*/
+  box-shadow:
+    inset 5px 5px 10px hsl(219, 4%, 72%),
+    inset -5px -5px 10px hsl(226, 81%, 97%);
+
+}
 #props_setting {
   display: flex;
   gap: 0px 30px;
 }
 .propBox {
-  width: 200px;
-  height: 80px;
-  padding: 5px 20px;
+  width: 170px;
+  height: 60px;
+  padding: 5px 10px;
   box-sizing: border-box;
-  margin-top: 20px;
 
   border-radius: 15px;
   background-color: hsl(225, 10%, 85%);
@@ -69,7 +104,7 @@ body {
   margin-bottom: 20px;
 }
 
-.propBox .propName {
+.propName {
   margin: 0;
 }
 
@@ -82,8 +117,24 @@ body {
 }
 
 .propBox .propInput .propValue{
-  font-size: 20px;
-  margin-right: 10px;
+  font-size: 16px;
+  margin-right: 5px;
+}
+.input_range {
+  width: 80%;
+}
+.cursorMode {
+  width: 200px;
+  height: 60px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  margin: auto;
+
+  border-radius: 15px;
+  background-color: hsl(225, 10%, 85%);
+  box-shadow:
+    10px 10px 20px hsl(219, 4%, 72%),
+    -10px -10px 20px hsl(226, 81%, 97%);
 }
 
 #actions_setting {
