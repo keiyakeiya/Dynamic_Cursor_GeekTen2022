@@ -23,7 +23,7 @@ let modeSelect =0;
 
 let isMouseMove = false;
 const minSpeed = 0.1;
-const maxSpeed = 10;
+const maxSpeed = 100;
 let niseflg = true;
 
 let delayTime = 100;
@@ -146,6 +146,10 @@ let render = () => {
         }
       }
     }
+    else if(modeSelect == 4){
+      niseCursorElem.style.display = 'none';
+      realCursorElem.style.display = 'none';
+    }
   }else{
     niseVX = 0;
     niseVY = 0;
@@ -184,21 +188,21 @@ let render = () => {
 
   if (niseX<0) {
     niseX = 0;
-    niseVX *= -1;
+    niseVX *= -0.4;
     functions(leftAction);
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
-    niseVX *= -1;
+    niseVX *= -0.3;
     functions(rightAction);
   }
   if (niseY<0) {
     niseY = 0;
-    niseVY *= -1;
+    niseVY *= -0.3;
     functions(topAction);
   } else if (niseY>window.innerHeight) {
     if(modeSelect != 3){
     niseY = window.innerHeight;
-    niseVY *= -1
+    niseVY *= -0.3;
     }
     functions(bottomAction);
   }
@@ -256,7 +260,8 @@ let functions = (actionIn) => {
       console.log('function 2');
       break;
     case 3://新しいタブを開く
-      open('https://www.google.co.jp/');
+      let options = "menubar=yes";
+      window.open('https://www.google.co.jp/',options);
       break;
     case 4:
       break;

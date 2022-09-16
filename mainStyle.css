@@ -12,11 +12,12 @@ body {
   width: var(--cursorSize);
   height: var(--cursorSize);
   border-radius: 50%;
-  background-color: hsla(0, 0%, 50%, 0.5);
+  /*background-color: hsla(0, 0%, 50%, 0.5);*/
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
   z-index: 2147483646;
 }
+
 
 #niseCursor {
   --cursorSize: 40px;
