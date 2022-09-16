@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Dynamic Cursor",
-  "version": "1",
+  "name": "ダイナミックカーソル",
+  "version": "1.0",
   "action": {
     "default_title": "Dynamic Cursor",
     "default_popup": "./popup/popup.html"
@@ -22,5 +22,10 @@
       "js": ["mainScript.js"],
       "css": ["mainStyle.css"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "icon/cursorIcon16_trans.png",
+    "48": "icon/cursorIcon48_trans.png",
+    "128": "icon/cursorIcon128_trans.png"
+  }
 }

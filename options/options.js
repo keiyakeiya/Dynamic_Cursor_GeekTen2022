@@ -19,18 +19,21 @@ actionInputElems.right = document.querySelector('#rightAction_select');
 let cursorModeElems = document.querySelector('#mode_select');
 
 const actionNameList = [
-  'none',
-  'back',
-  'next',
-  'action3',
-  'action4'
+  'なし',
+  '前のページへ進む',
+  '次のページへ進む',
+  '新しいタブを開く',
+  'ページ最上部へ',
+  'ページ最下部へ',
+
 ];
 //カーソルの動作モードの種類
 const cursorModeList = [
   '慣性モード',
   'ばねモード',
   '万有引力モード',
-  '重力モード'
+  '重力モード',
+  'なし'
 ];
 
 for(let i=0; i<actionNameList.length; i++) {
