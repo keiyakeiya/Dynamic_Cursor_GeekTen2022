@@ -6,6 +6,102 @@
     <link rel="stylesheet" href="./popup.css">
   </head>
   <body>
-    ポップアップだお
+    <div id="wrapper">
+      <h2 id="title">
+        ダイナミックカーソル
+      </h2>
+      <div id="container">
+        <div id="cursol_setting">
+          <h2 class="cur_title">カーソル設定</h2>
+          <div id="screen">
+            <div id='props_setting'>
+              <div class="propBox">
+                <h3 class="propName">抵抗</h3>
+                <div class="propInput">
+                  <span class="propValue">0.1</span>
+                  <input type="range" class="input_range" min="0" max="1" step="0.1" value="0.1">
+                </div>
+              </div>
+              <div class="propBox">
+                <h3 class="propName">質量</h3>
+                <div class="propInput">
+                  <span class="propValue">10</span>
+                  <input type="range" class="input_range" min="0" max="30" step="1" value="10">
+                </div>
+              </div>
+            </div>
+            <div class="cursorMode">
+              <div class="modeBox">
+                <h3 class="propName">カーソルの動作モード</h3>
+                <select id="mode_select">
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div id='props_setting'>
+          <div class="propBox">
+            <h2 class="propName">抵抗</h2>
+            <div class="propInput">
+              <span class="propValue">0.1</span>
+              <input type="range" min="0" max="1" step="0.1" value="0.1">
+            </div>
+          </div>
+          <div class="propBox">
+            <h2 class="propName">質量</h2>
+            <div class="propInput">
+              <span class="propValue">10</span>
+              <input type="range" min="0" max="30" step="1" value="10">
+            </div>
+          </div>
+        </div>-->
+        <div id="actions_setting">
+          <h2 class="act_title">アクション設定</h2>
+          <div id="screen">
+            <div class="actionBox" id="topAction">
+              <h3 class="actionName">Top Action</h3>
+              <div class="actionInput">
+                <select id="topAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="bottomAction">
+              <h3 class="actionName">Bottom Action</h3>
+              <div class="actionInput">
+                <select id="bottomAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="leftAction">
+              <h3 class="actionName">Left Action</h3>
+              <div class="actionInput">
+                <select id="leftAction_select">
+                </select>
+              </div>
+            </div>
+            <div class="actionBox" id="rightAction">
+              <h3 class="actionName">Right Action</h3>
+              <div class="actionInput">
+                <select id="rightAction_select">
+                </select>
+              </div>
+            </div>
+          <div>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="reload">
+      <div class="reloadButton">
+        <a href="">変更を適用</a>
+        </div>
+    </div>
+    <script>
+      document.getElementById("reload").addEventListener('click',(event) => {
+        //window.location.reload();
+        console.log('button');
+      },false);
+    </script>
+  -->
+    <script src="../options/options.js"></script>
   </body>
 </html>
