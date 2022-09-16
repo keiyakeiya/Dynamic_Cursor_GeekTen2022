@@ -23,7 +23,9 @@ const actionNameList = [
   '前のページへ進む',
   '次のページへ進む',
   '新しいタブを開く',
-  'action4'
+  'ページ最上部へ',
+  'ページ最下部へ',
+
 ];
 //カーソルの動作モードの種類
 const cursorModeList = [

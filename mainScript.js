@@ -23,10 +23,10 @@ let modeSelect =0;
 
 let isMouseMove = false;
 const minSpeed = 0.1;
-const maxSpeed = 100;
+const maxSpeed = 20;
 let niseflg = true;
 
-let delayTime = 100;
+let delayTime = 50;
 let moveTimer = 0;
 
 chrome.storage.local.get(
@@ -126,7 +126,7 @@ let render = () => {
     niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
     }
     else if(modeSelect == 2){
-      let gmM = 4000; // G*m*Mをひとまとめに
+      let gmM = 1000; // G*m*Mをひとまとめに
       let distdist = Math.max(Math.pow(mouseX-niseX, 2)+Math.pow(mouseY-niseY, 2), 0.000001); //距離の２乗, 0割りしないように&重力が大きくなりすぎないように
       niseVX += ((gmM*(mouseX-niseX)/Math.pow(distdist,3/2)) -resistance*niseVX)/niseCursorMass;
       niseVY += ((gmM*(mouseY-niseY)/Math.pow(distdist,3/2)) -resistance*niseVY)/niseCursorMass;
@@ -185,10 +185,10 @@ let render = () => {
 
   // 境界との接触をチェック
   // アクション入れるならここ
-
+  
   if (niseX<0) {
     niseX = 0;
-    niseVX *= -0.4;
+    niseVX *= -0.3;
     functions(leftAction);
   } else if (niseX>window.innerWidth) {
     niseX = window.innerWidth;
@@ -252,20 +252,24 @@ let functions = (actionIn) => {
       // no action
       break;
     case 1:
-    //   // history.back();
-      console.log('function 1');
+      history.back();
       break;
     case 2:
-    //   // history.forward();
-      console.log('function 2');
+      history.forward();
       break;
     case 3://新しいタブを開く
       let options = "menubar=yes";
       window.open('https://www.google.co.jp/',options);
       break;
-    case 4:
+    case 4://ページ最上部へ
+      window.scroll({top: 0, behavior: 'smooth'});
       break;
-    case 5:
+    case 5://ページ最下部へ
+      var element = document.documentElement;
+      var bottom = element.scrollHeight - element.clientHeight;
+      window.scrollTo({top: bottom, left: 0, behavior: 'smooth'});
+      break;
+    case 6:
       break;
   }
 };
