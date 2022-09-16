@@ -22,5 +22,10 @@
       "js": ["mainScript.js"],
       "css": ["mainStyle.css"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "icon/cursorIcon16_trans.png",
+    "48": "icon/cursorIcon48_trans.png",
+    "128": "icon/cursorIcon128_trans.png"
+  }
 }
