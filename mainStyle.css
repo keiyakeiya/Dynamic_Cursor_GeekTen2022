@@ -24,20 +24,47 @@ body {
   position: fixed;
   width: var(--cursorSize);
   height: var(--cursorSize);
-  /* border-radius: 50%; */
-  background-color: hsla(0, 0%, 50%, 0.5);
   left: calc(var(--cursorSize)*(-0.5));
   top: calc(var(--cursorSize)*(-0.5));
   z-index: 2147483647;
+  filter: drop-shadow(1px 1px 3px hsla(0, 0%, 50%, 1.0));
 
+}
+#niseChild {
+  width: 100%;
+  height: 100%;
   /* テスト用 */
-  background-color: hsla(200, 100%, 50%, 1.0);
-  filter: drop-shadow(3px 3px 5px hsla(0, 0%, 10%, 1.0));
+  background-color: hsla(300, 100%, 50%, 1);
+
+  --l1: 40%;
+  --l2: 2%;
+  --l3: 10%;
+  --x0: 50%;
+  --y0: 50%;
+  --x1: calc(50% + var(--l1)/1.4142);
+  --y1: calc(50% + var(--l1)/1.4142);
+  --x2: calc(50% + (2 - 1.4142)*var(--l1)/2 + var(--l2));
+  --y2: calc(50% + var(--l1)/1.4142);
+  --x5: calc(var(--x2) - var(--l2) - var(--l2)/1.4142);
+  --y5: calc(var(--y2) + (var(--l2) + var(--l2)/1.4142)/2);
+  --x3: calc(var(--x2) + var(--l3));
+  --y3: calc(var(--y2) + var(--l3)*2);
+  --x4: calc(var(--x5) + var(--l3));
+  --y4: calc(var(--y5) + var(--l3)*2);
+  --x6: 50%;
+  --y6: calc(50% + var(--l1));
 
   /* 形 */
-  clip-path: polygon(50% 50%, 100% 75%, 75% 100%);
+  clip-path: polygon(
+    var(--x0) var(--y0),
+    var(--x1) var(--y1),
+    var(--x2) var(--y2),
+    var(--x3) var(--y3),
+    var(--x4) var(--y4),
+    var(--x5) var(--y5),
+    var(--x6) var(--y6)
+  );
 }
-
 #controlArea {
   --margin: 30px;
   --AreaW: 25%;

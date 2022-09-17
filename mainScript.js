@@ -66,7 +66,9 @@ const realCursorElem = document.createElement('div'); //カーソル要素
 realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
-
+const niseChildElem = document.createElement('div'); //ニセカーソル中身要素
+niseChildElem.id = 'niseChild';
+niseCursorElem.appendChild(niseChildElem);
 // コントロールエリア
 //const ctrlAreaElem = document.createElement('div');
 //ctrlAreaElem.id = 'controlArea'
@@ -116,6 +118,8 @@ let render = () => {
     if(modeSelect == 0){
       niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
       niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+      //niseVX += -resistance*niseVX/niseCursorMass;
+      //niseVY += -resistance*niseVY/niseCursorMass;
     }
     else if(modeSelect == 1){
       let l = 300; 

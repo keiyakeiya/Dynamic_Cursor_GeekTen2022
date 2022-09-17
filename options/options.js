@@ -20,7 +20,7 @@ let cursorModeElems = document.querySelector('#mode_select');
 
 const actionNameList = [
   'なし',
-  '前のページへ進む',
+  '前のページへ戻る',
   '次のページへ進む',
   '新しいタブを開く',
   'ページ最上部へ',
