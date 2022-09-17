@@ -66,7 +66,9 @@ const realCursorElem = document.createElement('div'); //カーソル要素
 realCursorElem.id = 'realCursor';
 const niseCursorElem = document.createElement('div'); //ニセカーソル要素
 niseCursorElem.id = 'niseCursor';
-
+const niseChildElem = document.createElement('div'); //ニセカーソル中身要素
+niseChildElem.id = 'niseChild';
+niseCursorElem.appendChild(niseChildElem);
 // コントロールエリア
 //const ctrlAreaElem = document.createElement('div');
 //ctrlAreaElem.id = 'controlArea'
@@ -116,14 +118,14 @@ let render = () => {
     if(modeSelect == 0){
       niseVX += ((mouseX-pmouseX) -resistance*niseVX)/niseCursorMass;
       niseVY += ((mouseY-pmouseY) -resistance*niseVY)/niseCursorMass;
+      //niseVX += -resistance*niseVX/niseCursorMass;
+      //niseVY += -resistance*niseVY/niseCursorMass;
     }
     else if(modeSelect == 1){
-      let l = 300; 
-    //ニセカーソルとカーソルの距離
-    let r = Math.sqrt(Math.pow(Math.abs(mouseX - niseX),2)+Math.pow(Math.abs(mouseY+niseY),2));
-    // v(t) - v(t-1) = a(t) = F/m = -k(x-l)/m
-    niseVX += resistance*(Math.abs(mouseX-niseX)-l)/niseCursorMass;
-    niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
+    //niseVX += resistance*(Math.abs(mouseX-niseX)-l)/niseCursorMass;
+    //niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
+    niseVX += -resistance*(niseX - mouseX)/niseCursorMass;
+    niseVY += -resistance*(niseY - mouseY)/niseCursorMass;
     }
     else if(modeSelect == 2){
       let gmM = 1000; // G*m*Mをひとまとめに
