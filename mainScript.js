@@ -122,12 +122,10 @@ let render = () => {
       //niseVY += -resistance*niseVY/niseCursorMass;
     }
     else if(modeSelect == 1){
-      let l = 300; 
-    //ニセカーソルとカーソルの距離
-    let r = Math.sqrt(Math.pow(Math.abs(mouseX - niseX),2)+Math.pow(Math.abs(mouseY+niseY),2));
-    // v(t) - v(t-1) = a(t) = F/m = -k(x-l)/m
-    niseVX += resistance*(Math.abs(mouseX-niseX)-l)/niseCursorMass;
-    niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
+    //niseVX += resistance*(Math.abs(mouseX-niseX)-l)/niseCursorMass;
+    //niseVY += resistance*(Math.abs(mouseY-niseY)-l)/niseCursorMass;
+    niseVX += -resistance*(niseX - mouseX)/niseCursorMass;
+    niseVY += -resistance*(niseY - mouseY)/niseCursorMass;
     }
     else if(modeSelect == 2){
       let gmM = 1000; // G*m*Mをひとまとめに
