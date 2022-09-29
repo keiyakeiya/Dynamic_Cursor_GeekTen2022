@@ -15,7 +15,6 @@
     "http://*/*",
     "https://*/*"
   ],
-  "options_page": "./options/options.html",
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
